@@ -1,15 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
 </head>
+
 <body>
     <div class="container">
-        
+        <div class="card mt-3">
+            <div class="card-body">
+                <h1 class="card-title">Weather App</h1>
+                <form>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">Search by City</label>
+                        <input type="text" class="form-control" id="city" aria-describedby="emailHelp">
+                        <div id="cityHelp" class="form-text">Type city name and click search</div>
+                    </div>
+                    <button id="search" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="cardCity">
+        <!--Insert card temperatures-->
     </div>
     <script src="main.bundle.js"></script>
 </body>
+
 </html>
