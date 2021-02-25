@@ -58,6 +58,12 @@ h3 {
   line-height: 1.2;
 }
 
+.loading {
+  margin-top: 10px;
+  font-size: 3rem;
+  color: var(--color-warning);
+}
+
 p {
   margin-top: 0;
   margin-bottom: 1rem;

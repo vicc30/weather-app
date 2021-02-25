@@ -5,6 +5,7 @@ import './styles/style.css';
 // Get elements in HTML
 let input = document.querySelector('input');
 const search = document.getElementById('search');
+const card = document.getElementById('cardCity');
 
 //Set example first value Mexico City
 const defaultCity = 'mexico city';
@@ -16,8 +17,12 @@ const getWeather = async (city) => {
 
     try {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`, { mode: 'cors' });
+        onLoad();
         const weatherCity = await response.json();
-        renderCity(weatherCity);
+        await setAsyncTimeout(() => {
+            cleanUi();
+            renderCity(weatherCity);
+        }, 2000);
     }
     catch {
         console.log("Can't connect with getWeather");
@@ -32,8 +37,29 @@ search.addEventListener("click", e => {
 
 //To Celsius
 const toCelsius = (kTemp) => {
-    return Math.round((kTemp - 273.1)*10)/10;
-}   
+    return Math.round((kTemp - 273.1) * 10) / 10;
+}
+
+const cleanUi = () => {
+    //get html element to render
+    card.innerHTML = "";
+}
+const onLoad = () => {
+
+    cleanUi();
+    card.innerHTML +=
+        `
+            <h3 class="loading" id="loading"> <i class="fas fa-sun fa-spin loading"></i> Loading ... </h3>
+        `
+
+}
+
+const setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
+    setTimeout(() => {
+        cb();
+        resolve();
+    }, timeout);
+});
 
 const renderCity = (city) => {
     //set values 
@@ -46,15 +72,11 @@ const renderCity = (city) => {
     const icon = city.weather[0].icon;
     const weatherClass = city.weather[0].main;
 
-    //get html element to render
-    const card = document.getElementById('cardCity');
-
-    // Clear UI
-    card.innerHTML = "";
+    cleanUi();
 
     // Render card with values
 
-    card.innerHTML += 
+    card.innerHTML +=
         `
             <div class="card mt-3 ${weatherClass.toLowerCase()}" >
                 <div class="card-body">
