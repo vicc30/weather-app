@@ -11,7 +11,6 @@
 :root {
   --color-green: #198754;
   --color-white: #fff;
-  --color-gray: #6c757d;
   --color-gray-dark: #343a40;
   --color-primary: #0d6efd;
   --color-secondary: #6c757d;
@@ -32,6 +31,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 body {
@@ -78,7 +78,7 @@ p {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: var(--color-white);
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -88,10 +88,20 @@ p {
   margin-bottom: 0.5rem;
 }
 
+h3.card-title {
+  font-size: 30px;
+}
+
 .card-body {
   flex: 1 1 auto;
   padding: 1rem 1rem;
+  font-size: 1rem;
 }
+
+.card-body img {
+  height: 3rem;
+}
+
 .card-text:last-child {
   margin-bottom: 0;
 }
@@ -112,8 +122,8 @@ label {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: var(--color-dark);
+  background-color: var(--color-white);
   background-clip: padding-box;
   border: 1px solid #ced4da;
   -moz-appearance: none;
@@ -136,13 +146,13 @@ textarea {
 .form-text {
   margin-top: 0.25rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: var(--color-secondary);
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 button:not(:disabled) {
@@ -169,7 +179,7 @@ button:not(:disabled) {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #212529;
+  color: var(--color-dark);
   vertical-align: top;
   border-color: #dee2e6;
   caption-side: bottom;

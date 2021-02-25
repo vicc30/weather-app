@@ -30,15 +30,21 @@ search.addEventListener("click", e => {
     getWeather(input.value);
 });
 
+//To Celsius
+const toCelsius = (kTemp) => {
+    return Math.round((kTemp - 273.1)*10)/10;
+}   
+
 const renderCity = (city) => {
     //set values 
-    const feels = city.main.feels_like;
+    const feels = toCelsius(city.main.feels_like);
     const humidity = city.main.humidity;
-    const temp = city.main.temp;
-    const max = city.main.temp_max;
-    const min = city.main.temp_min;
+    const temp = toCelsius(city.main.temp);
+    const max = toCelsius(city.main.temp_max);
+    const min = toCelsius(city.main.temp_min);
     const cityName = city.name;
-    const desc = city.weather[0].description;
+    const icon = city.weather[0].icon;
+    const weatherClass = city.weather[0].main;
 
     //get html element to render
     const card = document.getElementById('cardCity');
@@ -50,35 +56,34 @@ const renderCity = (city) => {
 
     card.innerHTML += 
         `
-            <div class="card mt-3" >
+            <div class="card mt-3 ${weatherClass.toLowerCase()}" >
                 <div class="card-body">
                     <div class="row">
-                        <h3 class="card-title"> ${cityName} 
-                            <span><button class="btn btn-primary">° Celsius</button></span>
+                        <h3 class="card-title"> ${cityName}
+                        <img src=" http://openweathermap.org/img/wn/${icon}@2x.png"/ alt="${weatherClass}">
                         </h3>
-                        
                     </div>
                     <div class="row">
                         <div class="col col-12 col-md-4">
-                            <p class="card-text"><i class="far fa-sun"></i> ${desc}</p>
-                            <p class="card-text"><i class="fas fa-thermometer-half"></i> ${temp}</p>
+                            <p class="card-text"> ${weatherClass}</p>
+                            <p class="card-text"><i class="fas fa-thermometer-half"></i> ${temp} °C</p>
                         </div>
                         <div class="col col-12 col-md-8">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Feels Like</th>
+                                        <th scope="col">Feels Like °C</th>
                                         <th scope="col">Humidity</th>
-                                        <th scope="col">Min. Temp.</th>
-                                        <th scope="col">Max Temp.</th>
+                                        <th scope="col">Min. Temp. °C</th>
+                                        <th scope="col">Max Temp. °C</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>${feels}</td>
-                                        <td>${humidity}%</td>
-                                        <td>${min}</td>
-                                        <td>${max}</td>
+                                        <td>${feels} °C</td>
+                                        <td>${humidity} %</td>
+                                        <td>${min} °C</td>
+                                        <td>${max} °C</td>
                                     </tr>
                                 </tbody>
                             </table>
